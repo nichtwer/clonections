@@ -141,7 +141,7 @@ function Game({ tilesData }) {
         const { category } = selectedTiles[0];
         const words = selectedTiles.map((t) => t.word);
 
-        // Check for duplicate catgeories
+        // Check for duplicate categories
         setSolvedCategories((prev) => (prev.some((cat) => cat.theme === theme)
           ? prev
           : [...prev, {
@@ -211,22 +211,26 @@ function Game({ tilesData }) {
     return ['#efefe6', '#000'];
   };
 
+  const getTileClasses = (tile) => {
+    const classes = [];
+    if (shakingTiles && selectedTiles.includes(tile)) {
+      classes.push('animate-horizontal-shake');
+    }
+    if (guessAnimation.show && guessAnimation.index === shuffledTiles.indexOf(tile)) {
+      classes.push('animate-guess-animation');
+    }
+    return classes.join(' ');
+  };
+
   // Display alert for 10 seconds when selection has already been made
   useEffect(() => {
-    if (alert.status) {
-      const timer = setTimeout(() => {
-        setAlert({ ...alert, status: false });
-      }, 10000);
-      return () => clearTimeout(timer);
-    }
-    return undefined;
-  }, [alert]);
+    if (!alert.status) return () => {};
 
-  const handleKeyDown = (event, tile) => {
-    if (event.key === 'Enter' || event.key === ' ') {
-      handleTileSelect(tile);
-    }
-  };
+    const timer = setTimeout(() => {
+      setAlert({ ...alert, status: false });
+    }, 10000);
+    return () => clearTimeout(timer);
+  }, [alert.status]);
 
   return (
     <main className="container">
@@ -257,13 +261,10 @@ function Game({ tilesData }) {
             colors={getTileColors(tile)}
             onSelect={() => handleTileSelect(tile)}
             disabled={status === 'won' || status === 'lost'}
-            className={`${shakingTiles && selectedTiles.includes(tile) ? 'animate-horizontal-shake' : ''} ${
-              guessAnimation.show && guessAnimation.index === shuffledTiles.indexOf(tile) ? 'animate-guess-animation' : ''
-            }`}
+            className={getTileClasses(tile)}
             aria-label={`Tile ${tile.word}`}
             tabIndex={0}
             role="button"
-            onKeyDown={(event) => handleKeyDown(event, tile)}
           />
         ))}
       </div>
