@@ -101,16 +101,29 @@ function Game({ tilesData }) {
     }
   };
 
-  // TODO: handle case when 3/4 tiles are matching
   // Checks if all 4 tiles match (have the same theme)
   const isCorrectMatch = (tiles) => {
     if (tiles.length !== 4) return false;
-    const { theme } = tiles[0];
 
-    for (let index = 1; index < tiles.length; index += 1) {
-      if (tiles[index].theme !== theme) return false;
+    const themeCounts = {};
+
+    for (let i = 0; i < tiles.length; i += 1) {
+      const { theme } = tiles[i];
+      themeCounts[theme] = (themeCounts[theme] || 0) + 1;
     }
-    return true;
+
+    const counts = Object.values(themeCounts);
+
+    if (counts.length === 1) {
+      // only one theme = 4 tiles with matching theme
+      return true;
+    }
+    if (counts.length === 2 && (counts[0] === 1 || counts[0] === 3) && mistakes > 2) {
+      // 3 tiles share 1 theme; 1 tile has mismatched theme
+      // only show 'One away' alert when at least one mistake remains after this incorrect selection
+      setAlert({ type: 'info', status: true, title: 'One away...' });
+    }
+    return false;
   };
 
   const arraysEqual = (arr1, arr2) => {
@@ -165,6 +178,7 @@ function Game({ tilesData }) {
 
         // If all tiles are matched, game is won
         if (unmatchedTiles.length === 0) {
+          setAlert({ type: 'success', status: true, title: 'You won!' });
           setStatus('won');
         }
       } else {
@@ -184,6 +198,7 @@ function Game({ tilesData }) {
         }, 300);
 
         if (newMistakes === 0) {
+          setAlert({ type: 'error', status: true, title: 'Better luck next time!' });
           setStatus('lost');
         } else {
           setStatus('wrong');

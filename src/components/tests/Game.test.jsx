@@ -309,7 +309,41 @@ test('Shuffling only affects unmatched tiles and keeps matched tiles at the top'
   expect(unmatchedTilesAfterShuffle).not.toEqual(unmatchedTilesAfterMatch);
 });
 
-/* TODO tests
-- can't submit less than 4 tiles
-- tiles can be submitted on enter/space
-*/
+test('One away alert when 3 matching tiles are selected', async () => {
+  // Select 3 matching tiles and 1 nonmatching tile
+  ['Apple', 'Banana', 'Date', 'Bus'].forEach((word) => {
+    fireEvent.click(screen.getByText(word));
+  });
+
+  await act(async () => {
+    fireEvent.click(submitButton);
+    await delay(2000);
+  });
+
+  expect(getMistakesCount()).toBe(3);
+
+  // Wait for the "One away..." alert to appear
+  await waitFor(() => {
+    const alert = screen.getByText('One away...');
+    expect(alert).toBeInTheDocument();
+  });
+});
+
+test('No one away alert when 4 tiles of 2 different themes are selected', async () => {
+  // Select 2 matching tiles and 2 nonmatching tile
+  ['Apple', 'Banana', 'Truck', 'Bus'].forEach((word) => {
+    fireEvent.click(screen.getByText(word));
+  });
+
+  await act(async () => {
+    fireEvent.click(submitButton);
+    await delay(2000);
+  });
+
+  expect(getMistakesCount()).toBe(3);
+
+  await waitFor(() => {
+    const alert = screen.queryByText('One away...');
+    expect(alert).toBeNull();
+  });
+});
