@@ -3,8 +3,6 @@
 import React, { useEffect, useState } from 'react';
 import './styles/Toggle.css';
 
-// TODO: check localStorage for theme
-
 function Toggle() {
   const darkLabel = 'color mode toggle, dark mode';
   const lightLabel = 'color mode toggle, light mode';
@@ -14,18 +12,17 @@ function Toggle() {
   const [ariaActive, setAriaActive] = useState(true);
   const [ariaLabel, setAriaLabel] = useState(darkLabel);
 
+  const syncThemeState = (isDarkMode) => {
+    setActive(!isDarkMode);
+    setAriaActive(isDarkMode);
+    setAriaLabel(isDarkMode ? darkLabel : lightLabel);
+  };
+
   const changeTheme = () => {
-    if (document.body.classList.contains('dark-mode')) {
-      document.body.classList.remove('dark-mode');
-      setActive(true);
-      setAriaActive(false);
-      setAriaLabel(lightLabel);
-    } else {
-      document.body.classList.add('dark-mode');
-      setActive(false);
-      setAriaActive(true);
-      setAriaLabel(darkLabel);
-    }
+    const isDark = !document.body.classList.contains('dark-mode');
+    document.body.classList.toggle('dark-mode', isDark);
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    syncThemeState(isDark);
   };
 
   const handleOnClick = () => {
@@ -39,15 +36,10 @@ function Toggle() {
   };
 
   useEffect(() => {
-    if (document.body.classList.contains('dark-mode')) {
-      setActive(false);
-      setAriaActive(true);
-      setAriaLabel(darkLabel);
-    } else {
-      setActive(true);
-      setAriaActive(false);
-      setAriaLabel(lightLabel);
-    }
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    const isDark = savedTheme === 'dark';
+    document.body.classList.toggle('dark-mode', isDark);
+    syncThemeState(isDark);
   }, []);
 
   return (
@@ -59,9 +51,8 @@ function Toggle() {
         type="checkbox"
         id="toggle"
         className="toggle--checkbox"
-        onClick={handleOnClick}
+        onChange={handleOnClick}
         checked={active}
-        readOnly
       />
       <label htmlFor="toggle" className="toggle--label" aria-label={ariaLabel}>
         <span className="toggle--label-background" />

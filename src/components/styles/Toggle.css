@@ -50,16 +50,15 @@
     place-items: center;
     min-height: 60px;
     position: relative;
-    grid-area: toggle;
     margin: 20px;
 }
 
 /* background */
 .toggle--label {
-    left: 250px;
-    bottom: 580px;
-    width: 96px;
-    height: 48px;
+    left: 15.625rem;
+    bottom: 36.25rem;
+    width: 6rem;
+    height: 3rem;
     background: var(--indigo-color);
     border-radius: 100px;
     border: 3px solid var(--indigo-border);
@@ -179,132 +178,15 @@
 }
 
 @media (max-width: 600px) {
-    @keyframes reverse {
-        0% {
-            left: 42px;
-            width: 20px;
-        }
-
-        60% {
-            left: 3px;
-            width: 40px;
-        }
-
-        100% {
-            left: 2px;
-        }
-    }
-
-    @keyframes switch {
-        0% {
-            left: 3px;
-        }
-
-        60% {
-            left: 3px;
-            width: 40px;
-        }
-
-        100% {
-            left: 22px;
-            width: 20px;
-        }
-    }
-
     .container--toggle {
-        display: grid;
-        place-items: center;
-        min-height: 60px;
-        position: relative;
-        grid-area: toggle;
-        margin: 20px;
+        justify-content: flex-end;
+        align-items: flex-start;
+        padding-top: 2.5rem;
+        padding-right: 17rem;
     }
 
-    /* background */
     .toggle--label {
-        left: 130px;
-        bottom: 590px;
-        width: 48px;
-        height: 26px;
-        border: 2px solid var(--indigo-border);
-    }
-
-    /* sun and moon */
-    .toggle--label:before {
-        width: 20px;
-        height: 20px;
-        border: 2px solid var(--gray-border);
-        left: 3px;
-        position: absolute;
-        border-radius: 20px;
-        background: white;
-    }
-
-    /* moon dimples */
-	.toggle--label:after {
-		box-shadow: var(--gray-dots) -12px -5px 0 1px, var(--gray-dots) -15px 2px 0 -1px;
-		left: 40px;
-		top: 10px;
-		width: 4px;
-		height: 4px;
-		border-radius: 50%;
-		opacity: 1;
-	}
-
-    /* clouds */
-    .toggle--checkbox:checked+.toggle--label .toggle--label-background {
-        width: 2.5px;
-        left: 30px;
-        top: 10px;
-    }
-
-    .toggle--checkbox:checked+.toggle--label .toggle--label-background:before {
-        top: -2px;
-        left: -3px;
-        width: 12px;
-        height: 3px;
-    }
-
-    .toggle--checkbox:checked+.toggle--label .toggle--label-background:after {
-        top: 2px;
-        width: 12px;
-        height: 3px;
-        left: -6px;
-    }
-
-    /* stars */
-    .toggle--label-background {
-        border-radius: 5px;
-        position: relative;
-        background: #ffffff;
-        left: 16px;
-        width: 3px;
-        transition: all 150ms ease-in;
-        top: 12px;
-        height: 2px;
-    }
-
-    .toggle--label-background:before {
-        content: '';
-        position: absolute;
-        width: 2px;
-        height: 2px;
-        top: -8px;
-        left: -10px;
-        border-radius: 5px;
-        background: white;
-        transition: all 150ms ease-in;
-    }
-
-    .toggle--label-background:after {
-        content: '';
-        position: absolute;
-        width: 2px;
-        height: 2px;
-        left: -10px;
-        top: 4px;
-        border-radius: 5px;
-        background: white;
-        transition: all 150ms ease-in;
+        transform: scale(0.5);
+        transform-origin: top right;
     }
 }

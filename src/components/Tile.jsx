@@ -30,7 +30,7 @@ function Tile({
 Tile.propTypes = {
   word: PropTypes.string.isRequired,
   colors: PropTypes.arrayOf(PropTypes.string).isRequired,
-  onSelect: PropTypes.func.isRequired,
+  onSelect: PropTypes.func,
   disabled: PropTypes.bool.isRequired,
   className: PropTypes.string,
 };
