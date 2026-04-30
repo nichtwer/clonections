@@ -1,15 +1,14 @@
 [New York Times Connections Game](https://www.nytimes.com/games/connections) clone
 
-⚠️ **Note:** This project is currently a work in progress!
-
 <img width="687" alt="Screenshot 2025-04-21 at 10 48 14 PM" src="https://github.com/user-attachments/assets/39ffb7bf-d185-4726-a647-2d449015e4d4" />
 
 # TODO:
 
-- [ ] If 3/4 tiles selected are matching, keep those tiles selected and display hint that the user is '1 tile away'
-- [ ] Show the correct matches after the user has lost
-- [ ] Provide option to move on to another game with different tiles after completing the current game
-- [ ] Add confetti
+- Improve alerts to match those from the original game
+- Show and animate the correct matches after the user has lost
+- Display colorful tiles as shareable results after game has ended
+- Provide option to progress to another puzzle with different tiles after completing the current puzzle
+- Add confetti
 
 ## Available Scripts
 
