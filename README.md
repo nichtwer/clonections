@@ -4,7 +4,6 @@
 
 # TODO:
 
-- Improve alerts to match those from the original game
 - Show and animate the correct matches after the user has lost
 - Display colorful tiles as shareable results after game has ended
 - Provide option to progress to another puzzle with different tiles after completing the current puzzle

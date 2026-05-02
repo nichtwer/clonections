@@ -13,6 +13,7 @@ function ActionButton({
       onClick={onClick}
       disabled={disabled}
       aria-label={ariaLabel}
+      tabIndex={disabled ? -1 : 0}
     >
       {children}
     </button>
