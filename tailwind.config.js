@@ -40,6 +40,14 @@ module.exports = {
             transform: 'scale(0.8)',
           },
         },
+        'toast-in': {
+          '0%': { opacity: 0, transform: 'translateY(10px) scale(0.95)' },
+          '100%': { opacity: 1, transform: 'translateY(0) scale(1)' },
+        },
+        'toast-out': {
+          '0%': { opacity: 1, transform: 'translateY(0) scale(1)' },
+          '100%': { opacity: 0, transform: 'translateY(-10px) scale(0.95)' },
+        },
         pulse: {
           '0%': {
             transform: 'scaleY(1) scaleX(1)',
@@ -60,6 +68,8 @@ module.exports = {
         'guess-animation': 'guess-animation 0.2s ease-in-out',
         'fade-out': 'fade-out 0.8s ease-out',
         pulse: 'pulse 0.3s linear 1',
+        'toast-in': 'toast-in 0.25s ease-out forwards',
+        'toast-out': 'toast-out 0.4s ease-in forwards',
       },
     },
   },

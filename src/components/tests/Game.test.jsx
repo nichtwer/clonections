@@ -32,7 +32,7 @@ test('Game renders tiles correctly', () => {
 test('Game updates selected tiles correctly', () => {
   const tile = screen.getByText('Apple');
   fireEvent.click(tile);
-  expect(tile).toHaveStyle('background-color: #5a594e');
+  expect(tile).toHaveClass('bg-[var(--tile-selected-bg)]');
 });
 
 test('Game disables selection of matched tiles', async () => {
@@ -86,8 +86,8 @@ test('Game deselects all tiles correctly', async () => {
   fireEvent.click(screen.getByText('Banana'));
   fireEvent.click(screen.getByText('Deselect All'));
 
-  expect(screen.getByText('Apple')).toHaveStyle('background-color: #efefe6');
-  expect(screen.getByText('Banana')).toHaveStyle('background-color: #efefe6');
+  expect(screen.getByText('Apple')).toHaveClass('bg-[var(--tile-bg)]');
+  expect(screen.getByText('Banana')).toHaveClass('bg-[var(--tile-bg)]');
 });
 
 test('Game prevents tile selection when lost', async () => {
@@ -138,7 +138,7 @@ test('Game prevents tile selection when lost', async () => {
   // Try to select tile after losing
   const tile = screen.getByText('Apple');
   fireEvent.click(tile);
-  expect(tile).toHaveStyle('background-color: #efefe6');
+  expect(tile).toHaveClass('bg-[var(--tile-bg)]');
 }, 9000);
 
 test('Game selects 4 tiles, deselects, selects 4 other tiles, and submits', async () => {
@@ -151,7 +151,7 @@ test('Game selects 4 tiles, deselects, selects 4 other tiles, and submits', asyn
   fireEvent.click(deselectButton);
 
   ['Apple', 'Lion', 'Bike', 'Bus'].forEach((word) => {
-    expect(screen.getByText(word)).toHaveStyle('background-color: #efefe6');
+    expect(screen.getByText(word)).toHaveClass('bg-[var(--tile-bg)]');
   });
 
   // Reselect and deselect same tiles
@@ -206,13 +206,13 @@ test('Game prevents resubmission of previously submitted tiles', async () => {
 
   await act(async () => {
     fireEvent.click(submitButton);
-    await delay(2000);
+    await delay(1000);
   });
 
-  // Wait for the "Already selected!" alert to appear
+  // Wait for the "Already guessed!" toast to appear
   await waitFor(() => {
-    const alert = screen.getByText('Already selected!');
-    expect(alert).toBeInTheDocument();
+    const toast = screen.getByText('Already guessed!');
+    expect(toast).toBeInTheDocument();
   });
 
   expect(getMistakesCount()).toBe(3);
@@ -228,13 +228,13 @@ test('Game prevents resubmission of previously submitted tiles', async () => {
 
   await act(async () => {
     fireEvent.click(submitButton);
-    await delay(2000);
+    await delay(1000);
   });
 
-  // Wait for the "Already selected!" alert to appear
+  // Wait for the "Already guessed!" toast to appear
   await waitFor(() => {
-    const alert = screen.getByText('Already selected!');
-    expect(alert).toBeInTheDocument();
+    const toast = screen.getByText('Already guessed!');
+    expect(toast).toBeInTheDocument();
   });
 
   expect(getMistakesCount()).toBe(3);
@@ -309,7 +309,7 @@ test('Shuffling only affects unmatched tiles and keeps matched tiles at the top'
   expect(unmatchedTilesAfterShuffle).not.toEqual(unmatchedTilesAfterMatch);
 });
 
-test('One away alert when 3 matching tiles are selected', async () => {
+test('One away toast when 3 matching tiles are selected', async () => {
   // Select 3 matching tiles and 1 nonmatching tile
   ['Apple', 'Banana', 'Date', 'Bus'].forEach((word) => {
     fireEvent.click(screen.getByText(word));
@@ -322,14 +322,14 @@ test('One away alert when 3 matching tiles are selected', async () => {
 
   expect(getMistakesCount()).toBe(3);
 
-  // Wait for the "One away..." alert to appear
+  // Wait for the "One away..." toast to appear
   await waitFor(() => {
-    const alert = screen.getByText('One away...');
-    expect(alert).toBeInTheDocument();
+    const toast = screen.getByText('One away...');
+    expect(toast).toBeInTheDocument();
   });
 });
 
-test('No one away alert when 4 tiles of 2 different themes are selected', async () => {
+test('No one away toast when 4 tiles of 2 different themes are selected', async () => {
   // Select 2 matching tiles and 2 nonmatching tile
   ['Apple', 'Banana', 'Truck', 'Bus'].forEach((word) => {
     fireEvent.click(screen.getByText(word));
@@ -343,7 +343,7 @@ test('No one away alert when 4 tiles of 2 different themes are selected', async 
   expect(getMistakesCount()).toBe(3);
 
   await waitFor(() => {
-    const alert = screen.queryByText('One away...');
-    expect(alert).toBeNull();
+    const toast = screen.queryByText('One away...');
+    expect(toast).toBeNull();
   });
 });

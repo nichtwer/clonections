@@ -1,7 +1,7 @@
 /* eslint-disable no-await-in-loop */
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import Alert from 'reactjs-alert';
+import Toast from './Toast';
 import Tile from './Tile';
 import ActionButton from './ActionButton';
 import Toggle from './Toggle';
@@ -13,14 +13,15 @@ function Game({ tilesData }) {
   const [mistakes, setMistakes] = useState(4);
   const [removingMistake, setRemovingMistake] = useState(null);
   // possible statuses: playing, won, lost, wrong
+  // TODO: consolidate statuses
   const [status, setStatus] = useState('playing');
   const [solvedCategories, setSolvedCategories] = useState([]);
   const [newSolvedTheme, setNewSolvedTheme] = useState('');
   const [submittedSelections, setSubmittedSelections] = useState([]);
   // notify user if selection has already been submitted
-  const [alert, setAlert] = useState({ type: '', status: false, title: '' });
   const [guessAnimation, setGuessAnimation] = useState({ show: false, index: -1 });
   const [shakingTiles, setShakingTiles] = useState(false);
+  const [toastMessage, setToastMessage] = useState(null);
 
   /*
   Note: for each submitted section, the actual game saves the following:
@@ -45,8 +46,6 @@ function Game({ tilesData }) {
   // Shuffle tiles upon render
   const [shuffledTiles, setShuffledTiles] = useState(() => shuffleTiles([...tilesData]));
 
-  // Guess and wrong selection animations inspired by
-  // https://github.com/srefsland/nyt-connections-clone
   const delay = (ms) => new Promise((resolve) => {
     setTimeout(resolve, ms);
   });
@@ -118,10 +117,10 @@ function Game({ tilesData }) {
       // only one theme = 4 tiles with matching theme
       return true;
     }
-    if (counts.length === 2 && (counts[0] === 1 || counts[0] === 3) && mistakes > 2) {
+    if (counts.length === 2 && (counts[0] === 1 || counts[0] === 3) && mistakes > 1) {
       // 3 tiles share 1 theme; 1 tile has mismatched theme
-      // only show 'One away' alert when at least one mistake remains after this incorrect selection
-      setAlert({ type: 'info', status: true, title: 'One away...' });
+      // only show 'One away' alert when at least 2 mistakes remain
+      setToastMessage('One away...');
     }
     return false;
   };
@@ -143,7 +142,7 @@ function Game({ tilesData }) {
       if (
         submittedSelections.some((selection) => arraysEqual(selection, selectedTiles))
       ) {
-        setAlert({ type: 'error', status: true, title: 'Already selected!' });
+        setToastMessage('Already guessed!');
         return;
       }
 
@@ -178,7 +177,7 @@ function Game({ tilesData }) {
 
         // If all tiles are matched, game is won
         if (unmatchedTiles.length === 0) {
-          setAlert({ type: 'success', status: true, title: 'You won!' });
+          setToastMessage('Perfect');
           setStatus('won');
         }
       } else {
@@ -198,7 +197,7 @@ function Game({ tilesData }) {
         }, 300);
 
         if (newMistakes === 0) {
-          setAlert({ type: 'error', status: true, title: 'Better luck next time!' });
+          setToastMessage('Next Time');
           setStatus('lost');
         } else {
           setStatus('wrong');
@@ -218,49 +217,31 @@ function Game({ tilesData }) {
     setSelectedTiles([]);
   };
 
-  // Change color of tiles when selected
-  const getTileColors = (tile) => {
-    if (selectedTiles.includes(tile)) {
-      return ['#5a594e', '#fff'];
-    }
-    return ['#efefe6', '#000'];
-  };
-
   const getTileClasses = (tile) => {
-    const classes = [];
     if (shakingTiles && selectedTiles.includes(tile)) {
-      classes.push('animate-horizontal-shake');
+      return 'animate-horizontal-shake';
     }
+
     if (guessAnimation.show && guessAnimation.index === shuffledTiles.indexOf(tile)) {
-      classes.push('animate-guess-animation');
+      return 'animate-guess-animation';
     }
-    return classes.join(' ');
+
+    return '';
   };
-
-  // Display alert for 10 seconds when selection has already been made
-  useEffect(() => {
-    if (!alert.status) return () => {};
-
-    const timer = setTimeout(() => {
-      setAlert({ ...alert, status: false });
-    }, 10000);
-    return () => clearTimeout(timer);
-  }, [alert.status]);
 
   return (
     <main className="container">
       <h1 className="game_title">Clonections</h1>
       <div>Create four groups of four!</div>
 
-      <Alert
-        type={alert.type}
-        status={alert.status}
-        title={alert.title}
-        Close={() => setAlert({ ...alert, status: false })}
-      />
-
       {/* Grid of word tiles */}
       <div className="grid" role="grid">
+        {toastMessage && (
+        <Toast
+          message={toastMessage}
+          onClose={() => setToastMessage(null)}
+        />
+        )}
         {solvedCategories.map((cat) => (
           <SolvedCategory
             key={cat.theme}
@@ -273,7 +254,7 @@ function Game({ tilesData }) {
           <Tile
             key={tile.word}
             word={tile.word}
-            colors={getTileColors(tile)}
+            selected={selectedTiles.includes(tile)}
             onSelect={() => handleTileSelect(tile)}
             disabled={status === 'won' || status === 'lost'}
             className={getTileClasses(tile)}
@@ -314,7 +295,7 @@ function Game({ tilesData }) {
         </ActionButton>
         <ActionButton
           onClick={checkSelection}
-          disabled={selectedTiles.length !== 4 || status === 'won' || status === 'lost' || status === 'wrong'}
+          disabled={selectedTiles.length !== 4 || status !== 'playing'}
           aria-label="Submit selection"
         >
           Submit

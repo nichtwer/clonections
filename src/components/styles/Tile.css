@@ -3,6 +3,8 @@
 	--tile-color: #000;
 	--tile-disabled-opacity: 0.5;
 	--tile-active-scale: 0.95;
+	--tile-selected-bg: #5a594e;
+	--tile-selected-color: #fff;
 }
 
 .dark-mode {
@@ -10,6 +12,8 @@
 	--tile-color: #fff;
 	--tile-disabled-opacity: 0.3;
 	--tile-active-scale: 0.9;
+	--tile-selected-bg: #888;
+	--tile-selected-color: #000;
 }
 
 .tile {
@@ -27,9 +31,8 @@
 	cursor: pointer;
 	font-weight: 700;
 	text-transform: uppercase;
-	background-color: var(--tile-bg);
-	color: var(--tile-color);
 	z-index: 0;
+	user-select: none; 
 }
 	
 .tile:active {

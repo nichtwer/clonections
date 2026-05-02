@@ -2,10 +2,21 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import Tile from '../Tile';
 
-test('Tile renders correctly', () => {
-  render(<Tile word="Test" colors={['blue', '#000']} disabled={false} />);
+test('Tile renders correctly (unselected)', () => {
+  render(<Tile word="Test" selected={false} disabled={false} />);
+
   const tile = screen.getByText('Test');
+
   expect(tile).toBeInTheDocument();
-  expect(tile).toHaveStyle('background-color: blue');
-  expect(tile).toHaveStyle('color: #000');
+  expect(tile).toHaveClass('bg-[var(--tile-bg)]');
+  expect(tile).toHaveClass('text-[var(--tile-color)]');
+});
+
+test('Tile renders correctly when selected', () => {
+  render(<Tile word="Test" selected disabled={false} />);
+
+  const tile = screen.getByText('Test');
+
+  expect(tile).toHaveClass('bg-[var(--tile-selected-bg)]');
+  expect(tile).toHaveClass('text-[var(--tile-selected-color)]');
 });
