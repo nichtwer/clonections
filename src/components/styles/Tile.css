@@ -8,7 +8,7 @@
 }
 
 .dark-mode {
-	--tile-bg: #333;
+	--tile-bg: #414141;
 	--tile-color: #fff;
 	--tile-disabled-opacity: 0.3;
 	--tile-active-scale: 0.9;

@@ -24,7 +24,7 @@ function Toast({ message, onClose }) {
   return (
     <div className="toast-wrapper">
       <div
-        className={`testtoast show ${fadeOut ? 'animate-toast-out' : 'animate-toast-in'}`}
+        className={`toasty show ${fadeOut ? 'animate-toast-out' : 'animate-toast-in'}`}
       >
         {message}
       </div>

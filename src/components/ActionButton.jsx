@@ -4,12 +4,12 @@ import PropTypes from 'prop-types';
 import './styles/ActionButton.css';
 
 function ActionButton({
-  onClick, disabled, children, ariaLabel,
+  onClick, disabled, children, ariaLabel, type,
 }) {
   return (
     <button
       type="button"
-      className={`action_button ${disabled ? 'disabled' : ''}`}
+      className={`action_button ${disabled ? 'disabled' : ''} ${type === 'submit' ? 'submit_button' : ''}`}
       onClick={onClick}
       disabled={disabled}
       aria-label={ariaLabel}
@@ -25,6 +25,7 @@ ActionButton.propTypes = {
   disabled: PropTypes.bool,
   children: PropTypes.node.isRequired,
   ariaLabel: PropTypes.string,
+  type: PropTypes.string,
 };
 
 export default ActionButton;

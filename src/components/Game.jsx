@@ -13,12 +13,10 @@ function Game({ tilesData }) {
   const [mistakes, setMistakes] = useState(4);
   const [removingMistake, setRemovingMistake] = useState(null);
   // possible statuses: playing, won, lost, wrong
-  // TODO: consolidate statuses
   const [status, setStatus] = useState('playing');
   const [solvedCategories, setSolvedCategories] = useState([]);
   const [newSolvedTheme, setNewSolvedTheme] = useState('');
   const [submittedSelections, setSubmittedSelections] = useState([]);
-  // notify user if selection has already been submitted
   const [guessAnimation, setGuessAnimation] = useState({ show: false, index: -1 });
   const [shakingTiles, setShakingTiles] = useState(false);
   const [toastMessage, setToastMessage] = useState(null);
@@ -282,21 +280,25 @@ function Game({ tilesData }) {
 
       {/* Shuffle, Deselect all, and Submit */}
       <div className="actionButtonGrid">
-        <ActionButton onClick={handleShuffle} disabled={status === 'won' || status === 'lost'} aria-label="Shuffle tiles">
+        <ActionButton
+          onClick={handleShuffle}
+          disabled={status === 'won' || status === 'lost'}
+          aria-label="Shuffle tiles"
+        >
           Shuffle
         </ActionButton>
         <ActionButton
           onClick={handleDeselectAll}
-          className="deselect_all_button"
           disabled={selectedTiles.length < 1 || status === 'won' || status === 'lost'}
-          aria-label="Deselect all tiles"
+          aria-label="Deselect all selected tiles"
         >
           Deselect All
         </ActionButton>
         <ActionButton
           onClick={checkSelection}
           disabled={selectedTiles.length !== 4 || status !== 'playing'}
-          aria-label="Submit selection"
+          aria-label="Submit tile selection"
+          type="submit"
         >
           Submit
         </ActionButton>
