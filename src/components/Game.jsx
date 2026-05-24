@@ -86,7 +86,7 @@ function Game({ tilesData }) {
   Deselect tile if already selected.
   */
   const handleTileSelect = (tile) => {
-    if (status === 'lost') return;
+    if (status === 'lost' || (selectedTiles.length >= 4 && !selectedTiles.includes(tile))) return;
 
     if (selectedTiles.includes(tile)) {
       setSelectedTiles(selectedTiles.filter((t) => t !== tile));
@@ -254,7 +254,7 @@ function Game({ tilesData }) {
             word={tile.word}
             selected={selectedTiles.includes(tile)}
             onSelect={() => handleTileSelect(tile)}
-            disabled={status === 'won' || status === 'lost'}
+            disabled={(status === 'won' || status === 'lost') || (selectedTiles.length >= 4 && !selectedTiles.includes(tile))}
             className={getTileClasses(tile)}
             aria-label={`Tile ${tile.word}`}
             tabIndex={0}

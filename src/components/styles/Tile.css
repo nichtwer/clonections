@@ -1,8 +1,6 @@
 :root {
 	--tile-bg: #efefe6;
 	--tile-color: #000;
-	--tile-disabled-opacity: 0.5;
-	--tile-active-scale: 0.95;
 	--tile-selected-bg: #5a594e;
 	--tile-selected-color: #fff;
 }
@@ -10,8 +8,6 @@
 .dark-mode {
 	--tile-bg: #414141;
 	--tile-color: #fff;
-	--tile-disabled-opacity: 0.3;
-	--tile-active-scale: 0.9;
 	--tile-selected-bg: #888;
 	--tile-selected-color: #000;
 }
@@ -28,20 +24,19 @@
 	flex-wrap: wrap;
 	border-radius: 6px;
 	position: relative;
-	cursor: pointer;
 	font-weight: 700;
 	text-transform: uppercase;
 	z-index: 0;
 	user-select: none; 
 }
-	
+
 .tile:active {
 	transform: scale(0.95);
 }
 
 .tile.disabled {
 	cursor: not-allowed;
-	opacity: 0.5;
+	transform: none;
 }
 
 @media (max-width: 600px) {

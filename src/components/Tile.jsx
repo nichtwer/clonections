@@ -7,16 +7,21 @@ function Tile({
   word, selected, onSelect, disabled, className,
 }) {
   const handleKeyDown = (event) => {
+    if (disabled) return;
     if (event.key === 'Enter' || event.key === ' ') {
       onSelect();
     }
+  };
+
+  const handleClick = () => {
+    if (!disabled) onSelect();
   };
 
   return (
     <div
       role="button"
       tabIndex={disabled ? -1 : 0}
-      onClick={onSelect}
+      onClick={handleClick}
       onKeyDown={handleKeyDown}
       className={`
         tile

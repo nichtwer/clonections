@@ -1,12 +1,10 @@
 :root {
     /** sunny side **/
-    --blue-background: #c2e9f6;
     --blue-border: #108DAD;
     --blue-color: #96dcee;
     --yellow-background: #fffaa8;
     --yellow-border: #f5eb71;
     /** dark side **/
-    --indigo-background: #808fc7;
     --indigo-border: #808BBC;
     --indigo-color: #6b7abb;
     --gray-border: #e8e8ea;
