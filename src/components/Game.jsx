@@ -66,7 +66,7 @@ function Game({ tilesData }) {
     for (let i = 0; i < sortedSelectedTiles.length; i += 1) {
       setGuessAnimation({ show: true, index: sortedSelectedTiles[i].index });
       // Delay between tiles
-      await delay(200);
+      await delay(150);
     }
 
     setGuessAnimation({ show: false, index: -1 });
@@ -215,18 +215,6 @@ function Game({ tilesData }) {
     setSelectedTiles([]);
   };
 
-  const getTileClasses = (tile) => {
-    if (shakingTiles && selectedTiles.includes(tile)) {
-      return 'animate-horizontal-shake';
-    }
-
-    if (guessAnimation.show && guessAnimation.index === shuffledTiles.indexOf(tile)) {
-      return 'animate-guess-animation';
-    }
-
-    return '';
-  };
-
   return (
     <main className="container">
       <h1 className="game_title">Clonections</h1>
@@ -255,7 +243,9 @@ function Game({ tilesData }) {
             selected={selectedTiles.includes(tile)}
             onSelect={() => handleTileSelect(tile)}
             disabled={(status === 'won' || status === 'lost') || (selectedTiles.length >= 4 && !selectedTiles.includes(tile))}
-            className={getTileClasses(tile)}
+            animateGuess={guessAnimation.show
+               && guessAnimation.index === shuffledTiles.indexOf(tile)}
+            animateWrongGuess={shakingTiles && selectedTiles.includes(tile)}
             aria-label={`Tile ${tile.word}`}
             tabIndex={0}
             role="button"

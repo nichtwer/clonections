@@ -17,22 +17,15 @@ module.exports = {
             transform: 'translateX(5px)',
           },
         },
-        'guess-animation': {
-          '0%': { transform: 'translateY(0)' },
-          '100%': { transform: 'translateY(-0.5rem)' },
-        },
         'fade-out': {
-          '0%': {
-            opacity: 1,
-            transform: 'scale(1)',
-          },
-          '50%': {
-            opacity: 0.5,
+          '25%': {
             transform: 'scale(1.2)',
           },
+          '75%': {
+            transform: 'scale(0.4)',
+          },
           '100%': {
-            opacity: 0,
-            transform: 'scale(0.8)',
+            transform: 'scale(0)',
           },
         },
         'toast-in': {
@@ -60,8 +53,7 @@ module.exports = {
       },
       animation: {
         'horizontal-shake': 'horizontal-shake 0.2s ease-in-out infinite',
-        'guess-animation': 'guess-animation 0.2s ease-in-out',
-        'fade-out': 'fade-out 0.8s ease-out',
+        'fade-out': 'fade-out ease-in 0.4s 1',
         pulse: 'pulse 0.3s linear 1',
         'toast-in': 'toast-in 0.25s ease-out forwards',
         'toast-out': 'toast-out 0.4s ease-in forwards',

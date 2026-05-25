@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import './styles/Tile.css';
 
 function Tile({
-  word, selected, onSelect, disabled, className,
+  word, selected, onSelect, disabled, animateGuess, animateWrongGuess, ariaLabel,
 }) {
   const handleKeyDown = (event) => {
     if (disabled) return;
@@ -17,6 +17,10 @@ function Tile({
     if (!disabled) onSelect();
   };
 
+  const guessAnimation = animateGuess ? 'transform -translate-y-2' : '';
+
+  const wrongGuessAnimation = animateWrongGuess ? 'animate-horizontal-shake' : '';
+
   return (
     <div
       role="button"
@@ -26,13 +30,15 @@ function Tile({
       className={`
         tile
         ${disabled ? 'disabled' : ''}
-        ${className}
-        transition-colors duration-300 ease-in-out
+        ${guessAnimation}
+        ${wrongGuessAnimation}
+        transition ease-in-out
         ${selected
         ? 'bg-[var(--tile-selected-bg)] text-[var(--tile-selected-color)]'
         : 'bg-[var(--tile-bg)] text-[var(--tile-color)]'}
       `}
       aria-disabled={disabled}
+      aria-label={ariaLabel}
     >
       {word}
     </div>
@@ -44,7 +50,9 @@ Tile.propTypes = {
   selected: PropTypes.bool.isRequired,
   onSelect: PropTypes.func,
   disabled: PropTypes.bool.isRequired,
-  className: PropTypes.string,
+  animateGuess: PropTypes.bool,
+  animateWrongGuess: PropTypes.bool,
+  ariaLabel: PropTypes.string,
 };
 
 export default Tile;
