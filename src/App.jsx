@@ -9,7 +9,6 @@ function App() {
     category: theme.category,
     colors: theme.colors,
   })));
-  
   return (
     <div className="App">
       <header className="nyt-top-bar">
