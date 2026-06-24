@@ -217,7 +217,7 @@ function Game({ tilesData }) {
 
   return (
     <main className="container">
- {/*      <h1 className="game_title">Clonections</h1> */}
+      <h1 className="game_title">Clonections</h1>
       <div>Create four groups of four!</div>
 
       {/* Grid of word tiles */}
