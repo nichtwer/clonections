@@ -217,7 +217,6 @@ function Game({ tilesData }) {
 
   return (
     <main className="container">
-      <h1 className="game_title">Clonections</h1>
       <div>Create four groups of four!</div>
 
       {/* Grid of word tiles */}
@@ -293,7 +292,6 @@ function Game({ tilesData }) {
           Submit
         </ActionButton>
       </div>
-      <Toggle />
     </main>
   );
 }
