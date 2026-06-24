@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import Toast from './Toast';
 import Tile from './Tile';
 import ActionButton from './ActionButton';
-import Toggle from './Toggle';
 import SolvedCategory from './SolvedCategory';
 import './styles/Game.css';
 
