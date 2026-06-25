@@ -73,10 +73,11 @@
 
 .grid {
     grid-template-columns: repeat(4, 1fr);
-    gap: 8px; /* Ensures 8px space between both rows and columns */
-    padding: 24px 0px; /* Adds 16px top/bottom padding, maintains 12px sides */
+    grid-template-rows: repeat(4, auto); /* Overrides the fixed 80px rows */
+    gap: 8px; 
+    padding: 24px 0px; 
     width: 100%;
-    height: auto; /* Overrides height: 100% to prevent vertical tile merging */
+    height: auto; 
     max-width: none;
     margin: 0;
     box-sizing: border-box;
