@@ -118,32 +118,11 @@
   cursor: pointer;
 }
 
-/* Container for the three buttons */
-.actionButtonGrid {
-  display: flex;
-  justify-content: center; /* Centers the buttons as a group */
-  gap: 15px; /* Adjust spacing between buttons as needed */
-  /* Other layout styles... */
-}
-
-/* base style for all action buttons */
-.action-button {
-  /* CRITICAL CHANGE: Remove 'flex: 1' so buttons can define their own width */
-  
+.action_button {  
   display: flex;
   justify-content: center; /* Center horizontally */
   align-items: center; /* Center vertically */
-  /* Keep your original border, background, and text styles... */
-  
-  /* Critical changes for your goal: */
   white-space: nowrap; /* Forces text to never wrap to the next line */
   width: auto; /* The button's width is determined by its content */
   min-width: 100px; /* Optional: sets a baseline minimum width for uniformity */
-  
-  /* CRITICAL CHANGE: Remove overflow/ellipsis properties that hide text */
-}
-
-/* This button style is now empty, as the shared style handles the layout. */
-.deselect-button {
-  /* Leave empty or remove if not needed for anything else. */
 }
