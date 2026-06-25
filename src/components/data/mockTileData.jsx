@@ -11,7 +11,7 @@ const mockTilesData = [
   },
   {
     theme: 'Fruits',
-    words: ['Apple', 'Banana', 'Cherry', 'Date'],
+    words: ['Apple', 'Banananana', 'Cherry', 'Date'],
     category: 3,
   },
   {
