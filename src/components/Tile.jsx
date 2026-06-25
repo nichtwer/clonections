@@ -21,6 +21,8 @@ function Tile({
 
   const wrongGuessAnimation = animateWrongGuess ? 'animate-horizontal-shake' : '';
 
+  const isLongText = word.length > 8;
+  
   return (
     <div
       role="button"
