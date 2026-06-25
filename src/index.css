@@ -123,6 +123,9 @@
   justify-content: center; /* Center horizontally */
   align-items: center; /* Center vertically */
   white-space: nowrap; /* Forces text to never wrap to the next line */
-  width: auto; /* The button's width is determined by its content */
+  width: fit-content;
   min-width: 100px; /* Optional: sets a baseline minimum width for uniformity */
+  font-size: 16px;
+  font-weight: 600;
+  height: 3em;
 }
