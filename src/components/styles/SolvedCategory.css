@@ -43,7 +43,7 @@
 	flex-direction: column;
 	border-radius: 6px;
 	font-family: Arial;
-	font-size: 20px;
+	font-size: 16px;
 	line-height: 1.2;
 	z-index: 1;
 	animation-fill-mode: forwards;
@@ -55,6 +55,5 @@
 	.solvedCategory {
 		/* Mathematically forces the bar to match the fluid 1:1 squares */
 		height: calc((100vw - 48px) / 4);
-		font-size: 12px; /* Further reduces font size for mobile screens */
 	}
 }
