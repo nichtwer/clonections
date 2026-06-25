@@ -7,8 +7,9 @@
 }
 
 .container {
-  width: 624px;
-  height: 344px;
+  width: 100%;
+  max-width: 624px;
+  min-height: 344px;
   display: flex;
   flex-direction: column;
   align-items: center;
