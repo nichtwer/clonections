@@ -72,9 +72,13 @@
   }
 
   .grid {
-    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
-    gap: 10px;
-    max-width: 400px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    padding: 0 12px; /* 12px padding is 50% larger than the 8px gap */
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    box-sizing: border-box;
   }
 
   .actionButtonGrid {
