@@ -22,7 +22,7 @@ function Tile({
   const wrongGuessAnimation = animateWrongGuess ? 'animate-horizontal-shake' : '';
 
   const isLongText = word.length > 8;
-  
+
   return (
     <div
       role="button"
@@ -31,6 +31,7 @@ function Tile({
       onKeyDown={handleKeyDown}
       className={`
         tile
+        ${isLongText ? 'long-text' : ''}
         ${disabled ? 'disabled' : ''}
         ${guessAnimation}
         ${wrongGuessAnimation}
