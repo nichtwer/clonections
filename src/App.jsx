@@ -11,13 +11,20 @@ function App() {
   })));
   return (
     <div className="App">
+      <div className="promo-banner">
+        SUMMER OFFER ENDS SOON: 75% off &gt;
+      </div>
       <header className="nyt-top-bar">
         <div className="nyt-top-bar-left">
           <button type="button" className="hamburger-btn" aria-label="Menu">&#9776;</button>
-          <span className="nyt-logo">The New York Times</span>
         </div>
         <div className="nyt-top-bar-right">
-          <button type="button" className="subscribe-btn">75% OFF</button>
+          <div className="icon-placeholders">
+            <span>A</span>
+            <span>B</span>
+            <span>C</span>
+          </div>
+          <button type="button" className="subscribe-btn">75% off</button>
         </div>
       </header>
       <Game tilesData={tilesData} />
