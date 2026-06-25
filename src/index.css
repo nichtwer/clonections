@@ -125,5 +125,5 @@
   white-space: nowrap; /* Forces text to never wrap to the next line */
   width: fit-content;
   min-width: 100px; /* Optional: sets a baseline minimum width for uniformity */
-  padding: 12px 24px;
+  padding: 12px 24px !important;
 }
