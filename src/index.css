@@ -128,3 +128,17 @@
   flex: none !important;
   min-width: 0 !important;
 }
+
+.mistakesContent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #595959; /* Changes the text to grey */
+}
+
+.mistakesRemaining {
+  display: flex;
+  align-items: center;
+  margin-left: 12px; /* Defines the larger space between text and the first circle */
+  gap: 8px; /* Controls the spacing between the individual circles themselves */
+}
