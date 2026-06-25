@@ -44,7 +44,8 @@
 
 @media (max-width: 600px) {
 	.tile {
-		font-size: 16px;
+		/* Uses 2.5vw to ensure text begins shrinking immediately below 600px */
+		font-size: clamp(10px, 2.5vw + 2px, 16px); 
 		width: 100%;
 		height: auto;
 		aspect-ratio: 1 / 1;
