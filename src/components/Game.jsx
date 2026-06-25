@@ -215,7 +215,7 @@ function Game({ tilesData }) {
   };
 
   return (
-    <main>
+    <main className="container">
       <div className="instruction-text">Create four groups of four!</div>
       {/* Grid of word tiles */}
       <div className="grid" role="grid">
