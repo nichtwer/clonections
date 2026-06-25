@@ -71,11 +71,12 @@
     font-size: 1.5em;
   }
 
-  .grid {
+.grid {
     grid-template-columns: repeat(4, 1fr);
-    gap: 8px;
-    padding: 0 12px; /* 12px padding is 50% larger than the 8px gap */
+    gap: 8px; /* Ensures 8px space between both rows and columns */
+    padding: 16px 12px; /* Adds 16px top/bottom padding, maintains 12px sides */
     width: 100%;
+    height: auto; /* Overrides height: 100% to prevent vertical tile merging */
     max-width: none;
     margin: 0;
     box-sizing: border-box;
