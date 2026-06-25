@@ -124,7 +124,7 @@
   align-items: center; /* Center vertically */
   white-space: nowrap; /* Forces text to never wrap to the next line */
   width: fit-content !important;
-  padding: 12px 30px !important;
+  padding: 12px 24px !important;
   flex: none !important;
   min-width: 0 !important;
 }
