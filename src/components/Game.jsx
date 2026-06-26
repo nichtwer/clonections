@@ -19,7 +19,7 @@ function Game({ tilesData }) {
   const [guessAnimation, setGuessAnimation] = useState({ show: false, index: -1 });
   const [shakingTiles, setShakingTiles] = useState(false);
   const [toastMessage, setToastMessage] = useState(null);
-
+  const [toastDuration, setToastDuration] = useState(1200);
   /*
   Note: for each submitted section, the actual game saves the following:
   - correct (bool)
