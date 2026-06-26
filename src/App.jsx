@@ -39,7 +39,7 @@ function App() {
         </div>
       </header>
       <img
-        src="/fixed-bottom-bar.png"
+        src="/fixed-bottom-bar.jpeg"
         className="bottom-fixed-bar"
         alt="Fixed bottom bar"
         />
