@@ -42,7 +42,7 @@ function App() {
         src="/fixed-bottom-bar.jpeg"
         className="bottom-fixed-bar"
         alt="Fixed bottom bar"
-        />
+      />
       <Game tilesData={tilesData} />
     </div>
   );
