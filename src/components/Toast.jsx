@@ -3,23 +3,24 @@ import { React, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import './styles/Toast.css';
 
-function Toast({ message, onClose }) {
+function Toast({ message, onClose, duration = 1200 }) {
   const [fadeOut, setFadeOut] = useState(false);
 
   useEffect(() => {
+    // Triggers the fade-out animation 200ms before the toast unmounts
     const fadeOutTimer = setTimeout(() => {
       setFadeOut(true);
-    }, 1000);
+    }, duration - 200);
 
     const timer = setTimeout(() => {
       onClose();
-    }, 1200);
+    }, duration);
 
     return () => {
       clearTimeout(fadeOutTimer);
       clearTimeout(timer);
     };
-  }, [onClose]);
+  }, [onClose, duration]);
 
   return (
     <div className="toast-wrapper">
@@ -35,6 +36,7 @@ function Toast({ message, onClose }) {
 Toast.propTypes = {
   message: PropTypes.string.isRequired,
   onClose: PropTypes.func.isRequired,
+  duration: PropTypes.number,
 };
 
 export default Toast;
