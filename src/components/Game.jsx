@@ -175,6 +175,7 @@ function Game({ tilesData }) {
         // If all tiles are matched, game is won
         if (unmatchedTiles.length === 0) {
           setToastMessage('Sí sí sí sí!');
+          setToastDuration(5000);
           setStatus('won');
         }
       } else {
