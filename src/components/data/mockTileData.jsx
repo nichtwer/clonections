@@ -1,4 +1,4 @@
-const mockTilesData = [  
+const mockTilesData = [
   {
     theme: 'Yellow things in our house',
     words: ['Stool', 'Corridor', 'Toaster', 'My Backpack'],
