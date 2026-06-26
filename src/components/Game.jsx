@@ -223,9 +223,10 @@ function Game({ tilesData }) {
         {toastMessage && (
         <Toast
           message={toastMessage}
+          duration={toastDuration} 
           onClose={() => setToastMessage(null)}
         />
-        )}
+        )} 
         {solvedCategories.map((cat) => (
           <SolvedCategory
             key={cat.theme}
