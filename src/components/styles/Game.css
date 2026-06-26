@@ -1,5 +1,7 @@
 :root {
   --circle-bg: #5a594e;
+  padding-bottom: 100px;
+}
 }
 
 .dark-mode {
