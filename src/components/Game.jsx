@@ -194,7 +194,7 @@ function Game({ tilesData }) {
         }, 300);
 
         if (newMistakes === 0) {
-          setToastMessage('Ay no\u0021!');
+          setToastMessage('Ay no\u0021');
           setStatus('lost');
         } else {
           setStatus('wrong');
