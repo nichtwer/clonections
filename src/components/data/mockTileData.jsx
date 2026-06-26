@@ -1,22 +1,22 @@
-const mockTilesData = [
+const mockTilesData = [  
   {
-    theme: 'Vehicles',
-    words: ['Car', 'Bus', 'Bike', 'Truck'],
+    theme: 'Yellow things in our house',
+    words: ['Stool', 'Corridor', 'Toaster', 'My Backpack'],
     category: 1,
   },
   {
-    theme: 'Animals',
-    words: ['Lion', 'Tiger', 'Elephant', 'Giraffe'],
+    theme: 'Vowel is pronounced differently',
+    words: ['Coffee', 'London', 'Hello', 'Parents'],
     category: 2,
   },
   {
-    theme: 'Fruits',
-    words: ['Apple', 'Banananana nana', 'Cherry', 'Date'],
+    theme: 'Words that comes in twos or threes',
+    words: ['Ti', 'Squeeze', 'Blocked', 'Closer'],
     category: 3,
   },
   {
-    theme: 'Planets',
-    words: ['Pluto', 'Mars', 'Earth', 'Venus'],
+    theme: 'Last syllable of a friend\'s name',
+    words: ['Sus', 'Man', 'Nest', 'Lie'],
     category: 4,
   },
 ];
