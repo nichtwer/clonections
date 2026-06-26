@@ -38,6 +38,11 @@ function App() {
           <button type="button" className="subscribe-btn">75% off</button>
         </div>
       </header>
+      <img
+        src="/fixed-bottom-bar.png"
+        className="bottom-fixed-bar"
+        alt="Fixed bottom bar"
+        />
       <Game tilesData={tilesData} />
     </div>
   );
