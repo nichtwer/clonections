@@ -25,7 +25,7 @@ function Tile({
   const words = word.split(' ');
 
   // Checks if any individual word is strictly greater than 8 characters
-  const hasLongWord = words.some(w => w.length > 8);
+  const hasLongWord = words.some((w) => w.length > 8);
 
   // Checks if the total character count (including spaces) is greater than 15
   const isTooLong = word.length > 15;
