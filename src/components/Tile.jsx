@@ -32,7 +32,6 @@ function Tile({
 
   // Flag as long text if either condition is met
   const isLongText = hasLongWord || isTooLong;
-  
   return (
     <div
       role="button"
