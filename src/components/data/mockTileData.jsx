@@ -1,7 +1,7 @@
 const mockTilesData = [
   {
     theme: 'Yellow things in our house',
-    words: ['Stool', 'Corridor', 'Toaster', 'My Backpack'],
+    words: ['Stool', 'Corridor', 'Toaster', 'Backpack'],
     category: 1,
   },
   {
